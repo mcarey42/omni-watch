@@ -1,0 +1,13 @@
+## IDF Component Manager Manifest File
+dependencies:
+  # Pinned exactly (m13): board.c and power.c --wrap BSP-internal calls (CMakeLists.txt); board_init aborts at
+  # boot if a BSP change bypasses them. Re-check the wraps before bumping.
+  waveshare/esp32_s3_touch_amoled_1_75c:
+    version: "==3.0.0"
+  lvgl/lvgl:
+    version: "9.5.0"
+    public: true
+  espressif/qrcode:
+    version: "~0.2.0"
+  espressif/esp_mmap_assets:
+    version: "2.0.1"

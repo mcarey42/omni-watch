@@ -1,0 +1,93 @@
+# This file was generated using idf.py save-defconfig. It can be edited manually.
+# Shared ESP-IDF v5.5/v6.0 project minimal configuration
+#
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHSIZE_32MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_FETCH_INSTRUCTIONS=y
+CONFIG_SPIRAM_RODATA=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_XIP_FROM_PSRAM=y
+CONFIG_ESP32S3_INSTRUCTION_CACHE_32KB=y
+CONFIG_ESP32S3_DATA_CACHE_64KB=y
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+
+CONFIG_FREERTOS_HZ=1000
+CONFIG_LV_USE_CLIB_MALLOC=y
+CONFIG_LV_USE_CLIB_STRING=y
+CONFIG_LV_USE_CLIB_SPRINTF=y
+CONFIG_LV_DEF_REFR_PERIOD=15
+CONFIG_LV_OS_FREERTOS=y
+CONFIG_LV_OBJ_STYLE_CACHE=y
+
+# One software draw unit (Task 1 step 4, measured): a globe box redraw is one image blit, so a second draw thread
+# never shared it, but at priority 3 both threads pre-empted the globe workers (priority 2) on both cores while LVGL
+# drew. With one, spin's drag ran 21.4 -> 22.6 fps, live 24.4 -> 25.7, analog's flip 16.5 -> 18.3, the picker
+# redraws in 80 ms (was 102), and internal RAM gains about 9 KB (the thread). The digital face's full redraw takes
+# 194-212 ms (was 177-188). Two units with the draw threads at priority 1, under the workers (review m5), starved
+# LVGL instead: spin drag 21.2, live 24.9, analog flip 12.5 fps (one unit, same day: 22.2 / 26.5 / 17.0), for a
+# digital redraw of 146-155 ms (one unit, same day: 158-170 ms).
+CONFIG_LV_DRAW_SW_DRAW_UNIT_CNT=1
+# Not in IRAM (Task 12): LVGL's ~105 KB of fast-mem code shares internal SRAM with the heap, and Wi-Fi + BLE
+# provisioning need that RAM (with it in IRAM esp_wifi_init failed and the display's DMA bounce buffers ran out).
+# CONFIG_LV_ATTRIBUTE_FAST_MEM_USE_IRAM is not set
+CONFIG_LV_USE_FONT_COMPRESSED=y
+CONFIG_LV_TXT_BREAK_CHARS=" ,.;:-_"
+CONFIG_LV_USE_IMGFONT=y
+# Step 1 (rim keyboard and Settings track, spec section 10, D2): no screen uses LVGL's default theme or Montserrat 14,
+# so neither is built (about 26 KB of code). LV_FONT_DEFAULT is font_plex_sans_500_14 (common/lv_font_default.cmake,
+# included by each app). The choice is moved off Montserrat 14 because LV_FONT_DEFAULT_MONTSERRAT_14 selects the font
+# again; UNSCII 8 is LVGL's minimal-config default, and nothing references it once the redirect wins.
+CONFIG_LV_USE_THEME_DEFAULT=n
+CONFIG_LV_FONT_DEFAULT_UNSCII_8=y
+
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="../../common/partitions.csv"
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+CONFIG_PM_ENABLE=y
+CONFIG_FREERTOS_USE_TICKLESS_IDLE=y
+# USB-Serial-JTAG cannot run in light sleep: while a USB host is connected, hold off automatic light sleep
+# so the console keeps working (on battery the board light-sleeps while asleep).
+CONFIG_USJ_NO_AUTO_LS_ON_CONNECTION=y
+CONFIG_LV_USE_SNAPSHOT=y
+CONFIG_IDF_TARGET="esp32s3"
+
+# Wi-Fi provisioning over BLE (network_provisioning, Task 12): NimBLE host, BLE only.
+CONFIG_BT_ENABLED=y
+CONFIG_BT_NIMBLE_ENABLED=y
+# NimBLE host buffers in PSRAM (internal RAM is short while provisioning)
+CONFIG_BT_NIMBLE_MEM_ALLOC_MODE_EXTERNAL=y
+# Wi-Fi/lwIP buffers may live in PSRAM: keeps internal RAM for DMA, LVGL and the BLE controller.
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+# Internal RAM is scarce (LVGL, DMA): few static RX buffers (they must be internal) and dynamic TX buffers
+# (PSRAM-capable). 16 static RX buffers made esp_wifi_init fail with ESP_ERR_NO_MEM at boot.
+CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=4
+CONFIG_ESP_WIFI_DYNAMIC_RX_BUFFER_NUM=16
+CONFIG_ESP_WIFI_DYNAMIC_TX_BUFFER=y
+CONFIG_ESP_WIFI_RX_BA_WIN=4
+# IRAM is full with LVGL's fast-mem code: the BLE controller (used only while provisioning) runs from flash,
+# or the link fails ("dangerous relocation ... xt_debugexception": IRAM text beyond the vectors' jump range).
+CONFIG_BT_CTRL_RUN_IN_FLASH_ONLY=y
+
+# Timekeeping on the high-resolution timer only (Task 14 clock step). This board has no 32 kHz crystal, so the RTC
+# timer runs on the internal RC slow clock (CONFIG_RTC_CLK_SRC_INT_RC). With IDF's default "RTC and high-resolution
+# timer", every light sleep re-derives the time since boot from the RTC (esp_set_time_from_rtc), so the first light
+# sleep after a USB period (none on USB, R22) stepped the clock by all the RC error since the previous light sleep or
+# boot (+220 s after ~10 h on USB). With the HRT only, the clock runs on the 40 MHz crystal and light sleep just
+# advances esp_timer by the sleep length. Cost: the time does not survive a reset; boot syncs at once.
+CONFIG_LIBC_TIME_SYSCALL_USE_HRT=y
+# Light sleep exit callbacks: power.c counts the time spent asleep for the clock calibration (clockcal).
+CONFIG_PM_LIGHT_SLEEP_CALLBACKS=y
+
+# The LVGL task pinned to core 0 (R108). The render workers (the Omni dial's, the globe views', `disp bench`'s) run on
+# core 1, and LVGL beside them there cost about 5 ms a full-screen refresh: disp bench full 24.5 -> 28.0-28.5 fps,
+# measured in Stage 3: Omni rest 27.1-27.8 -> 30.2-31.0 fps (Task 14's bisect). Core 0 is also the radios'
+# (Wi-Fi, BT, NimBLE, esp_timer) and the dial helper's; the helper is withdrawn from a frame when core 0 is busy.
+# Stage 3 Task 7 had pinned it to core 1 (T2 m10), measured only against an unpinned task that also landed on core 1.
+CONFIG_OMNI_LVGL_CORE=0
+# R130 (Stage 4b Task 6): the boot task runs store_init's one-time NVS migration (~1.1 KB a part, about 2.9 KB deep
+# with NVS and the flash driver). app_main returns after watch_main, so this stack is freed at the end of boot.
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=6144

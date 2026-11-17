@@ -1,0 +1,700 @@
+{
+ "generator": "tools/export_layers.mjs",
+ "assets": [
+  {
+   "file": "live_ring.bin",
+   "name": "live_ring",
+   "cf": "ARGB8888",
+   "w": 286,
+   "h": 286,
+   "face": "globe-live",
+   "origin": [
+    90,
+    69
+   ]
+  },
+  {
+   "file": "live_over.bin",
+   "name": "live_over",
+   "cf": "ARGB8888",
+   "w": 286,
+   "h": 286,
+   "face": "globe-live",
+   "origin": [
+    90,
+    69
+   ]
+  },
+  {
+   "file": "sun_bead.bin",
+   "name": "sun_bead",
+   "cf": "RGB565A8",
+   "w": 24,
+   "h": 24,
+   "face": "globe-live",
+   "pivot": [
+    12,
+    12
+   ]
+  },
+  {
+   "file": "sun_glow.bin",
+   "name": "sun_glow",
+   "cf": "RGB565A8",
+   "w": 52,
+   "h": 52,
+   "face": "globe-live",
+   "pivot": [
+    26,
+    26
+   ]
+  },
+  {
+   "file": "spin_over.bin",
+   "name": "spin_over",
+   "cf": "ARGB8888",
+   "w": 350,
+   "h": 350,
+   "face": "globe-spin",
+   "origin": [
+    58,
+    47
+   ]
+  },
+  {
+   "file": "ana_dial.bin",
+   "name": "ana_dial",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "face": "globe-analog",
+   "origin": [
+    0,
+    0
+   ]
+  },
+  {
+   "file": "ana_over.bin",
+   "name": "ana_over",
+   "cf": "ARGB8888",
+   "w": 316,
+   "h": 316,
+   "face": "globe-analog",
+   "origin": [
+    75,
+    75
+   ]
+  },
+  {
+   "file": "ana_hour.bin",
+   "name": "ana_hour",
+   "cf": "RGB565A8",
+   "w": 42,
+   "h": 161,
+   "face": "globe-analog",
+   "pivot": [
+    21,
+    129
+   ]
+  },
+  {
+   "file": "ana_hour_sh.bin",
+   "name": "ana_hour_sh",
+   "cf": "RGB565A8",
+   "w": 42,
+   "h": 161,
+   "face": "globe-analog",
+   "pivot": [
+    21,
+    129
+   ],
+   "offset": [
+    3,
+    4
+   ]
+  },
+  {
+   "file": "ana_min.bin",
+   "name": "ana_min",
+   "cf": "RGB565A8",
+   "w": 40,
+   "h": 250,
+   "face": "globe-analog",
+   "pivot": [
+    20,
+    214
+   ]
+  },
+  {
+   "file": "ana_min_sh.bin",
+   "name": "ana_min_sh",
+   "cf": "RGB565A8",
+   "w": 40,
+   "h": 250,
+   "face": "globe-analog",
+   "pivot": [
+    20,
+    214
+   ],
+   "offset": [
+    3,
+    4
+   ]
+  },
+  {
+   "file": "ana_cap.bin",
+   "name": "ana_cap",
+   "cf": "RGB565A8",
+   "w": 18,
+   "h": 18,
+   "face": "globe-analog",
+   "pivot": [
+    9,
+    9
+   ]
+  },
+  {
+   "file": "thumb_omni_dial.bin",
+   "name": "thumb_omni_dial",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "omni-dial"
+  },
+  {
+   "file": "thumb_globe_live.bin",
+   "name": "thumb_globe_live",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "globe-live"
+  },
+  {
+   "file": "thumb_globe_analog.bin",
+   "name": "thumb_globe_analog",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "globe-analog"
+  },
+  {
+   "file": "thumb_digital.bin",
+   "name": "thumb_digital",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "digital"
+  },
+  {
+   "file": "thumb_world.bin",
+   "name": "thumb_world",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "world"
+  },
+  {
+   "file": "thumb_almanac.bin",
+   "name": "thumb_almanac",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "almanac"
+  },
+  {
+   "file": "thumb_timer.bin",
+   "name": "thumb_timer",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "timer"
+  },
+  {
+   "file": "thumb_globe_spin.bin",
+   "name": "thumb_globe_spin",
+   "cf": "RGB565A8",
+   "w": 68,
+   "h": 68,
+   "face": "globe-spin"
+  },
+  {
+   "file": "omni_base.bin",
+   "name": "omni_base",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "face": "omni-dial",
+   "origin": [
+    0,
+    0
+   ]
+  },
+  {
+   "file": "omni_top.bin",
+   "name": "omni_top",
+   "cf": "ARGB8888",
+   "w": 264,
+   "h": 264,
+   "face": "omni-dial",
+   "origin": [
+    101,
+    101
+   ]
+  },
+  {
+   "file": "omni_over.bin",
+   "name": "omni_over",
+   "cf": "ARGB8888",
+   "w": 272,
+   "h": 131,
+   "face": "omni-dial",
+   "origin": [
+    97,
+    0
+   ]
+  },
+  {
+   "file": "omni_dome.bin",
+   "name": "omni_dome",
+   "cf": "ARGB8888",
+   "w": 224,
+   "h": 224,
+   "face": "omni-dial",
+   "origin": [
+    121,
+    121
+   ]
+  },
+  {
+   "file": "omni_glass.bin",
+   "name": "omni_glass",
+   "cf": "ARGB8888",
+   "w": 52,
+   "h": 104,
+   "face": "omni-dial",
+   "origin": [
+    207,
+    18
+   ]
+  },
+  {
+   "file": "omni_lens_red_off.bin",
+   "name": "omni_lens_red_off",
+   "cf": "ARGB8888",
+   "w": 43,
+   "h": 38,
+   "face": "omni-dial",
+   "origin": [
+    104,
+    28
+   ],
+   "centre": [
+    125.5,
+    46.805
+   ],
+   "angle": -30
+  },
+  {
+   "file": "omni_lens_red_on.bin",
+   "name": "omni_lens_red_on",
+   "cf": "ARGB8888",
+   "w": 43,
+   "h": 38,
+   "face": "omni-dial",
+   "origin": [
+    104,
+    28
+   ],
+   "centre": [
+    125.5,
+    46.805
+   ],
+   "angle": -30
+  },
+  {
+   "file": "omni_bloom_red.bin",
+   "name": "omni_bloom_red",
+   "cf": "A8",
+   "w": 140,
+   "h": 140,
+   "face": "omni-dial",
+   "origin": [
+    56,
+    -23
+   ],
+   "pivot": [
+    70,
+    70
+   ],
+   "centre": [
+    125.5,
+    46.805
+   ],
+   "tint": [
+    [
+     0,
+     255,
+     90,
+     50,
+     0.75
+    ],
+    [
+     0.3,
+     230,
+     40,
+     20,
+     0.25
+    ],
+    [
+     1,
+     200,
+     20,
+     10,
+     0
+    ]
+   ],
+   "level": 0.55
+  },
+  {
+   "file": "omni_lens_green_off.bin",
+   "name": "omni_lens_green_off",
+   "cf": "ARGB8888",
+   "w": 43,
+   "h": 38,
+   "face": "omni-dial",
+   "origin": [
+    319,
+    28
+   ],
+   "centre": [
+    340.5,
+    46.805
+   ],
+   "angle": 30
+  },
+  {
+   "file": "omni_lens_green_on.bin",
+   "name": "omni_lens_green_on",
+   "cf": "ARGB8888",
+   "w": 43,
+   "h": 38,
+   "face": "omni-dial",
+   "origin": [
+    319,
+    28
+   ],
+   "centre": [
+    340.5,
+    46.805
+   ],
+   "angle": 30
+  },
+  {
+   "file": "omni_bloom_green.bin",
+   "name": "omni_bloom_green",
+   "cf": "A8",
+   "w": 140,
+   "h": 140,
+   "face": "omni-dial",
+   "origin": [
+    271,
+    -23
+   ],
+   "pivot": [
+    70,
+    70
+   ],
+   "centre": [
+    340.5,
+    46.805
+   ],
+   "tint": [
+    [
+     0,
+     110,
+     255,
+     120,
+     0.7
+    ],
+    [
+     0.3,
+     40,
+     220,
+     80,
+     0.22
+    ],
+    [
+     1,
+     20,
+     180,
+     60,
+     0
+    ]
+   ],
+   "level": 0.55
+  },
+  {
+   "file": "omni_lid.bin",
+   "name": "omni_lid",
+   "cf": "RGB565A8",
+   "w": 466,
+   "h": 466,
+   "face": "omni-flip",
+   "origin": [
+    0,
+    0
+   ]
+  },
+  {
+   "file": "omni_blade.bin",
+   "name": "omni_blade",
+   "cf": "A8",
+   "w": 256,
+   "h": 512,
+   "face": "omni-iris",
+   "format": "A8: the grain luminance over rgb(128,128,128); 128 = none, above lighter, below darker"
+  },
+  {
+   "file": "wt_frame.bin",
+   "name": "wt_frame",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "face": "world",
+   "origin": [
+    0,
+    0
+   ]
+  },
+  {
+   "file": "wt_over.bin",
+   "name": "wt_over",
+   "cf": "ARGB8888",
+   "w": 338,
+   "h": 338,
+   "face": "world",
+   "origin": [
+    64,
+    64
+   ]
+  },
+  {
+   "file": "earth512.tex",
+   "name": "earth512",
+   "cf": "RAW_TEX",
+   "w": 512,
+   "h": 256,
+   "face": [
+    "globe-live",
+    "globe-spin",
+    "globe-analog"
+   ],
+   "format": "u32 LE: day RGB565 | night RGB565 << 16, row-major equirectangular"
+  },
+  {
+   "file": "omni512.tex",
+   "name": "omni512",
+   "cf": "RAW_TEX",
+   "w": 512,
+   "h": 256,
+   "face": "omni-dial",
+   "format": "u32 LE: day RGB565 graded as the mockup grades it (gen_tex.mjs --grade omni) | 0 << 16 (no night plane)"
+  },
+  {
+   "file": "omni_strip0.bin",
+   "name": "omni_strip0",
+   "cf": "STRIP",
+   "w": 2048,
+   "h": 71,
+   "level": 0,
+   "r_min": 126,
+   "stride": 2080,
+   "face": "omni-dial",
+   "format": "ORS1 header (16 B), rgb565[h][stride] LE, a8[h][stride]: rows by radius from r_min, w entries clockwise from 12 (the rest of each row pads the stride)"
+  },
+  {
+   "file": "omni_strip1.bin",
+   "name": "omni_strip1",
+   "cf": "STRIP",
+   "w": 1024,
+   "h": 71,
+   "level": 1,
+   "r_min": 126,
+   "stride": 1056,
+   "face": "omni-dial",
+   "format": "ORS1 header (16 B), rgb565[h][stride] LE, a8[h][stride]: rows by radius from r_min, w entries clockwise from 12 (the rest of each row pads the stride)"
+  },
+  {
+   "file": "omni_strip2.bin",
+   "name": "omni_strip2",
+   "cf": "STRIP",
+   "w": 512,
+   "h": 71,
+   "level": 2,
+   "r_min": 126,
+   "stride": 544,
+   "face": "omni-dial",
+   "format": "ORS1 header (16 B), rgb565[h][stride] LE, a8[h][stride]: rows by radius from r_min, w entries clockwise from 12 (the rest of each row pads the stride)"
+  },
+  {
+   "file": "omni_dialmap.bin",
+   "name": "omni_dialmap",
+   "cf": "PMAP",
+   "w": 394,
+   "h": 394,
+   "origin": [
+    36,
+    36
+   ],
+   "n_theta": 2048,
+   "nspans": 2570,
+   "digest": "bfa52e985359c57e",
+   "face": "omni-dial",
+   "format": "OPM1 header (72 B), spans (20 B each), 4-bit codes: the dial's polar map, variant B (ring.h omni_pmap_load)"
+  },
+  {
+   "file": "tmr_lut.bin",
+   "name": "tmr_lut",
+   "cf": "TLUT",
+   "w": 438,
+   "h": 438,
+   "n": 71516,
+   "digest": "003254ab95d1e68e",
+   "face": "timer",
+   "format": "OTL1 header (16 B), idx u32[n], ang u16[n], rq u8[n] LE: the timer ring's pixels 160 <= r <= 220 in box order (tmr_ring.h omni_tmr_lut_load)"
+  },
+  {
+   "file": "sfx_latch.pcm",
+   "name": "sfx_latch",
+   "cf": "PCM",
+   "samples": 2240,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le",
+   "face": "sound"
+  },
+  {
+   "file": "sfx_whoosh.pcm",
+   "name": "sfx_whoosh",
+   "cf": "PCM",
+   "samples": 35200,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le",
+   "face": "sound"
+  },
+  {
+   "file": "sfx_surge.pcm",
+   "name": "sfx_surge",
+   "cf": "PCM",
+   "samples": 38400,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le",
+   "face": "sound"
+  },
+  {
+   "file": "sfx_chime.pcm",
+   "name": "sfx_chime",
+   "cf": "PCM",
+   "samples": 19200,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le",
+   "face": "sound"
+  },
+  {
+   "file": "sfx_alarm.pcm",
+   "name": "sfx_alarm",
+   "cf": "PCM",
+   "samples": 19200,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le",
+   "face": "sound"
+  },
+  {
+   "file": "bg_bezel.bin",
+   "name": "bg_bezel",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "src": "capture",
+   "crc32": "5cfc94d2"
+  },
+  {
+   "file": "bg_picker.bin",
+   "name": "bg_picker",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "src": "capture",
+   "crc32": "9fe68698"
+  },
+  {
+   "file": "bg_settings.bin",
+   "name": "bg_settings",
+   "cf": "RGB565",
+   "w": 466,
+   "h": 466,
+   "src": "capture",
+   "crc32": "9ec99c26"
+  },
+  {
+   "file": "kb_lay.bin",
+   "name": "kb_lay",
+   "cf": "RAW",
+   "out": "shared_ui",
+   "face": "shared",
+   "size": 104,
+   "crc32": "234085fe",
+   "src": "watch_ui/assets, byte-equal (check_apps)"
+  },
+  {
+   "file": "kb_mono21.bin",
+   "name": "kb_mono21",
+   "cf": "RAW",
+   "out": "shared_ui",
+   "face": "shared",
+   "size": 7684,
+   "crc32": "cf9bf60e",
+   "src": "watch_ui/assets, byte-equal (check_apps)"
+  },
+  {
+   "file": "kb_mono42.bin",
+   "name": "kb_mono42",
+   "cf": "RAW",
+   "out": "shared_ui",
+   "face": "shared",
+   "size": 26936,
+   "crc32": "dc02044a",
+   "src": "watch_ui/assets, byte-equal (check_apps)"
+  },
+  {
+   "file": "kb_icons.bin",
+   "name": "kb_icons",
+   "cf": "RGB565A8",
+   "out": "shared_ui",
+   "face": "shared",
+   "size": 13836,
+   "crc32": "b73a1398",
+   "src": "watch_ui/assets, byte-equal (check_apps)",
+   "w": 192,
+   "h": 24
+  },
+  {
+   "file": "kb_tick.pcm",
+   "name": "kb_tick",
+   "cf": "PCM",
+   "out": "shared_ui",
+   "face": "shared",
+   "size": 800,
+   "crc32": "c012bbb1",
+   "src": "watch_ui/assets, byte-equal (check_apps)",
+   "samples": 400,
+   "rate": 16000,
+   "channels": 1,
+   "format": "s16le"
+  }
+ ]
+}

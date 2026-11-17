@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "description": "Node helpers for tools/ (qr_check.mjs, gen_tex.mjs, export_layers.mjs). Install: npm --prefix tools ci",
+  "dependencies": {
+    "jpeg-js": "0.4.4",
+    "jsqr": "1.4.0",
+    "playwright-core": "1.48.2",
+    "pngjs": "7.0.0"
+  }
+}

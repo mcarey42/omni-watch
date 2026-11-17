@@ -1,0 +1,2 @@
+# dw theme sdkconfig overrides (none yet; the shared defaults are in ../../common/sdkconfig.defaults).
+# check_apps allows only the symbols an app's main/Kconfig.projbuild declares here.

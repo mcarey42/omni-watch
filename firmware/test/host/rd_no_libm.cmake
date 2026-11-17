@@ -1,0 +1,37 @@
+# test_rd_core_no_libm (rd wave 1 Task 9, lesson 6; Task 10: and no fk_glow_lut_build, lesson 3): rd_core draws with
+# fk_sincos (the table), integer math or constants, so no object of it but chime_env's (RW8: the chime's envelope, never
+# a still) may call libm's float or double routines. It scans the host's objects of the same sources (the host compiler,
+# -ffp-contract=off as the device): a call the device's compiler would add or drop on its own (an inlined builtin) is
+# not seen here. -DNM=<nm> -DOBJS=<the objects, |-separated> (CMakeLists.txt, $<TARGET_OBJECTS:rd_core>).
+string(REPLACE "|" ";" objs "${OBJS}")
+set(banned sin cos tan atan2 exp pow log floor ceil sqrt fmod round)
+set(hits "")
+set(n 0)
+foreach(o ${objs})
+    math(EXPR n "${n} + 1")
+    get_filename_component(name "${o}" NAME)
+    if(name MATCHES "^chime_env[.]c[.]o(bj)?$")
+        continue()
+    endif()
+    execute_process(COMMAND "${NM}" -u "${o}" OUTPUT_VARIABLE out RESULT_VARIABLE rc)
+    set(out " ${out}\n")
+    if(NOT rc EQUAL 0)
+        message(FATAL_ERROR "nm -u ${o} failed (${rc})")
+    endif()
+    # lesson 3 (Task 10, RW9): no rd_core object builds a glow table; they are glow_lut.h's const data
+    if(out MATCHES "[ \t\n]_?(fk_glow_lut_build)\n")
+        list(APPEND hits "${name}: fk_glow_lut_build (a glow table built, lesson 3)")
+    endif()
+    foreach(f ${banned})
+        if(out MATCHES "[ \t\n]_?(${f}f?)\n")
+            list(APPEND hits "${name}: ${CMAKE_MATCH_1}")
+        endif()
+    endforeach()
+endforeach()
+if(n LESS 4)
+    message(FATAL_ERROR "test_rd_core_no_libm: only ${n} rd_core objects given (${OBJS})")
+endif()
+if(hits)
+    message(FATAL_ERROR "test_rd_core_no_libm: libm in rd_core (lesson 6): ${hits}")
+endif()
+message(STATUS "test_rd_core_no_libm: ${n} rd_core objects, no libm outside chime_env.o")

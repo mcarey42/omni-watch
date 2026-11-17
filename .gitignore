@@ -1,0 +1,37 @@
+# Waveshare example repo, cloned for reference (re-clone: git clone --depth 1 https://github.com/waveshareteam/ESP32-S3-Touch-AMOLED-1.75C vendor/waveshare-examples)
+/vendor/
+# Raw downloads (full-size NASA textures); the resized copies in design/assets are kept
+/design/assets/dl/
+# Browser automation scratch
+/.playwright-mcp/
+# ESP-IDF build output
+build/
+build-*/
+sdkconfig.old
+managed_components/
+
+# Downloaded font TTFs (tools/fonts.sh)
+/tools/fonts/
+# The local watch ports (tools/watchport.py): each line `/dev/serial/by-id/<path> [name]`, never committed
+/tools/watch.local
+# Host test build
+/build-host/
+/build-host-asan/
+firmware/apps/*/sdkconfig
+# tools/qr_check.mjs dependencies (npm --prefix tools ci)
+/tools/node_modules/
+# tools/assets.sh: LVGLImage.py's venv and the exported layer PNGs (the packed results live in firmware/apps/omni/assets/)
+/tools/.venv-assets/
+/tools/export/out/
+# esp_mmap_assets writes this next to main/CMakeLists.txt at build time
+/firmware/apps/*/main/mmap_generate_assets.h
+# tools/dw_assets.sh: the dw export's PNGs (the packed results live in firmware/apps/dw/assets/)
+/tools/export/out-dw/
+# tools/rd_assets.sh: the rd export's PNGs and glyph images (the packed results live in firmware/apps/rd/assets/)
+/tools/export/out-rd/
+# rd wave 1 Task 5 (PR7): theme design packages and research briefs stay untracked (the research/ paths tracked at
+# e62bc30 stay tracked; tools/check_apps.py static fails on any other tracked path under either)
+/design/themes/
+/research/
+# Process records (specs, plans, reviews): private, never committed
+/.superpowers/

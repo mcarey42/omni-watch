@@ -1,0 +1,213 @@
+<meta charset="utf-8">
+<title>Omni Watch Mockups</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a workbench — the watch on a dark felt mat at left, the designers' index card at right; stacks on phones. */
+:root {
+  --mat: #121110;        /* page ground: dark felt, warm-biased */
+  --mat-2: #1b1917;      /* raised panels */
+  --rule: #34302b;       /* hairlines */
+  --ink: #ece6dc;        /* primary text */
+  --ink-dim: #a39a8c;    /* secondary text */
+  --brass: #c9a35b;      /* single accent */
+  --alarm: #d8443a;      /* Omni red, semantic only */
+  --ok: #4fd06a;         /* Omni green, semantic only */
+  --f-display: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  background: var(--mat); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); align-items: start; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); } }
+header.top { max-width: 1120px; margin: 0 auto 18px; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; justify-content: space-between; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: 2rem; letter-spacing: .04em; margin: 0; color: var(--brass); text-wrap: balance; }
+.sub { color: var(--ink-dim); font-size: .9rem; margin: 0; }
+.stage { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); display: grid; gap: 14px; justify-items: center; }
+@media (max-width: 860px) { .stage { position: static; } }
+.device {
+  width: min(100%, 500px); aspect-ratio: 1; max-width: 100%; border-radius: 50%;
+  padding: 3.4%; box-sizing: border-box;
+  background: radial-gradient(circle at 35% 30%, #4a4642, #1d1b19 60%, #0b0a09);
+  box-shadow: 0 0 0 1px #000, 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+}
+canvas#screen { width: 100%; height: 100%; display: block; border-radius: 50%; background: #000; touch-action: none; cursor: crosshair; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+button, select {
+  font: 500 .85rem var(--f-body); color: var(--ink); background: var(--mat-2); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 7px 12px; cursor: pointer;
+}
+button:hover, select:hover { border-color: var(--brass); }
+button:focus-visible, select:focus-visible, .face:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+button.primary { background: var(--brass); color: #1a1408; border-color: var(--brass); }
+.clock { font: 400 .8rem var(--f-mono); color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.panel { min-width: 0; display: grid; gap: 22px; }
+.group h2 { font: 600 .72rem var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 8px; }
+.faces { display: grid; gap: 6px; }
+.face {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; text-align: left; width: 100%;
+  background: transparent; border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; color: var(--ink);
+}
+.face[aria-pressed="true"] { border-color: var(--brass); background: var(--mat-2); }
+.face .t { font-weight: 600; }
+.face .id { font: .72rem var(--f-mono); color: var(--ink-dim); align-self: center; }
+.face .n { grid-column: 1 / -1; color: var(--ink-dim); font-size: .85rem; }
+.notes { background: var(--mat-2); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; }
+.notes h3 { font-family: var(--f-display); font-size: 1.35rem; margin: 0 0 6px; color: var(--brass); }
+.notes .body { max-width: 65ch; color: var(--ink); font-size: .92rem; }
+.notes .body p { margin: .4em 0; }
+.notes .body ul { margin: .4em 0; padding-left: 1.2em; }
+.empty { color: var(--ink-dim); font-size: .9rem; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<header class="top">
+  <h1>Omni Watch Mockups</h1>
+  <p class="sub">ESP32-S3-Touch-AMOLED-1.75C · 466 × 466 round AMOLED · design review, round 1</p>
+</header>
+
+<div class="wrap">
+  <section class="stage" aria-label="Watch preview">
+    <div class="device"><canvas id="screen" width="466" height="466" aria-label="Simulated watch screen"></canvas></div>
+    <div class="controls">
+      <button class="primary" id="wake">Lift to wake</button>
+      <button id="sleep">Put away</button>
+      <select id="speed" aria-label="Clock speed">
+        <option value="1">Clock: real time</option>
+        <option value="60">Clock: 1 min/sec</option>
+        <option value="3600">Clock: 1 hr/sec</option>
+      </select>
+    </div>
+    <div class="clock" id="clock"></div>
+  </section>
+
+  <section class="panel" aria-label="Designs">
+    <div id="groups"></div>
+    <article class="notes" id="notes"><p class="empty">Pick a design to see the designer's notes.</p></article>
+  </section>
+</div>
+
+<script>
+/* Host for the design team. Each face file pushes objects into window.OMNI_FACES:
+   { id, group, title, summary, notes (HTML string),
+     init(env), frame(ctx, t, env), pointer(type, x, y, env), wake(env), sleep(env) } — all but frame optional. */
+window.OMNI_FACES = window.OMNI_FACES || [];
+</script>
+<script src="faces-omni.js"></script>
+<script src="faces-practical.js"></script>
+<script src="faces-setup.js"></script>
+<script>
+(function () {
+  const W = 466;
+  const canvas = document.getElementById('screen');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = W * dpr; canvas.height = W * dpr;
+  const ctx = canvas.getContext('2d');
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let speed = 1, simBase = Date.now(), realBase = performance.now();
+  const env = {
+    W, cx: W / 2, cy: W / 2, R: W / 2,
+    assets: {},
+    reducedMotion: reduced,
+    now() { return new Date(simBase + (performance.now() - realBase) * speed); },
+    location: { name: 'London, UK', lat: 51.51, lon: -0.13 },   // placeholder home location
+    awake: true,
+    goto(id) { select(id); },
+  };
+  function loadImg(key, src) {
+    return new Promise(res => { const i = new Image(); i.onload = () => { env.assets[key] = i; res(); }; i.onerror = () => res(); i.src = src; });
+  }
+
+  const faces = window.OMNI_FACES;
+  let cur = null, t0 = performance.now();
+  const order = ['Omni', 'Faces', 'Setup'];
+  const groupsEl = document.getElementById('groups');
+  function renderList() {
+    groupsEl.innerHTML = '';
+    const groups = [...new Set([...order, ...faces.map(f => f.group)])].filter(g => faces.some(f => f.group === g));
+    for (const g of groups) {
+      const div = document.createElement('div'); div.className = 'group';
+      div.innerHTML = `<h2>${g}</h2><div class="faces"></div>`;
+      const list = div.querySelector('.faces');
+      for (const f of faces.filter(f => f.group === g)) {
+        const b = document.createElement('button');
+        b.className = 'face'; b.dataset.id = f.id; b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = `<span class="t"></span><span class="id"></span><span class="n"></span>`;
+        b.querySelector('.t').textContent = f.title; b.querySelector('.id').textContent = f.id; b.querySelector('.n').textContent = f.summary || '';
+        b.addEventListener('click', () => select(f.id));
+        list.appendChild(b);
+      }
+      groupsEl.appendChild(div);
+    }
+  }
+  function select(id) {
+    const f = faces.find(f => f.id === id); if (!f) return;
+    cur = f; t0 = performance.now(); env.awake = true;
+    try { f.init && f.init(env); f.wake && f.wake(env); } catch (e) { console.error(e); }
+    document.querySelectorAll('.face').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
+    const n = document.getElementById('notes');
+    n.innerHTML = `<h3></h3><div class="body"></div>`;
+    n.querySelector('h3').textContent = f.title;
+    n.querySelector('.body').innerHTML = f.notes || '';
+    try { if (location.hash.slice(1) !== id && /^[\w.~-]+$/.test(id)) history.replaceState(null, '', '#' + id); } catch (e) {}
+  }
+
+  document.getElementById('wake').addEventListener('click', () => {
+    if (!cur) return; env.awake = true; t0 = performance.now();
+    try { cur.wake && cur.wake(env); } catch (e) { console.error(e); }
+  });
+  document.getElementById('sleep').addEventListener('click', () => {
+    if (!cur) return; env.awake = false;
+    try { cur.sleep && cur.sleep(env); } catch (e) { console.error(e); }
+  });
+  document.getElementById('speed').addEventListener('change', e => {
+    simBase = env.now().getTime(); realBase = performance.now(); speed = +e.target.value;
+  });
+
+  function toLocal(ev) {
+    const r = canvas.getBoundingClientRect();
+    return [(ev.clientX - r.left) * W / r.width, (ev.clientY - r.top) * W / r.height];
+  }
+  let down = false;
+  canvas.addEventListener('pointerdown', ev => { down = true; canvas.setPointerCapture(ev.pointerId); const [x, y] = toLocal(ev); cur && cur.pointer && cur.pointer('down', x, y, env); });
+  canvas.addEventListener('pointermove', ev => { if (!down) return; const [x, y] = toLocal(ev); cur && cur.pointer && cur.pointer('move', x, y, env); });
+  canvas.addEventListener('pointerup', ev => { down = false; const [x, y] = toLocal(ev); cur && cur.pointer && cur.pointer('up', x, y, env); });
+  canvas.addEventListener('pointercancel', () => { down = false; });
+
+  const clockEl = document.getElementById('clock');
+  function tick(now) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.save();
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, W);
+    if (cur && env.awake) {
+      try { cur.frame(ctx, now - t0, env); } catch (e) { console.error(e); }
+    } else if (cur && cur.sleepFrame) {
+      try { cur.sleepFrame(ctx, now - t0, env); } catch (e) { console.error(e); }
+    }
+    ctx.restore();
+    // the panel is round: everything outside the circle is dark glass
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.beginPath(); ctx.arc(W / 2, W / 2, W / 2, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    const d = env.now();
+    clockEl.textContent = 'Simulated clock ' + d.toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    requestAnimationFrame(tick);
+  }
+
+  Promise.all([loadImg('earthDay', 'assets/earth-day-1024.jpg'), loadImg('earthNight', 'assets/earth-night-1024.jpg')]).then(() => {
+    renderList();
+    const want = location.hash.slice(1);
+    select(faces.some(f => f.id === want) ? want : (faces[0] && faces[0].id));
+    requestAnimationFrame(tick);
+  });
+})();
+</script>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Omni layer export</title>
+<!-- Served from the repo root by tools/export_layers.mjs. The dial's numerals use the same TTF the firmware fonts
+     are cut from (tools/fonts.sh), so the export works offline and never depends on Google Fonts. -->
+<style>
+@font-face { font-family: "Cormorant SC"; font-weight: 700; src: url("/tools/fonts/CormorantSC-Bold.ttf"); }
+/* The Omni lid's blackletter motto (faces-omni.js FB). Committed with its licence in tools/export/fonts/ (C13), so the
+   export never reaches fonts.googleapis.com (tools/export_layers.mjs also blocks it). */
+@font-face { font-family: "UnifrakturMaguntia"; font-weight: 400; src: url("/tools/export/fonts/UnifrakturMaguntia-Book.ttf"); }
+body { background: #000; }
+</style>
+</head>
+<body>
+<script>window.OMNI_FACES = [];</script>
+<!-- export.js first: it seeds Math.random before the mockup code exists, let alone draws -->
+<script src="/tools/export/export.js"></script>
+<script src="/design/mockups/faces-omni.js"></script>
+<script src="/design/mockups/faces-practical.js"></script>
+<script src="/design/mockups/faces-setup.js"></script>
+</body>
+</html>

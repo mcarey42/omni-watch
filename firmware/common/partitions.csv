@@ -1,0 +1,6 @@
+# Name,   Type, SubType, Offset,    Size,      Flags   -- FROZEN (spec §4): nothing below 16 MB ever moves or resizes
+nvs,      data, nvs,     0x9000,    0x6000,
+phy_init, data, phy,     0xf000,    0x1000,
+factory,  app,  factory, 0x10000,   4M,
+assets,   data, spiffs,  0x410000,  0xBF0000,
+pack,     data, 0x40,    0x1000000, 0x1000000,

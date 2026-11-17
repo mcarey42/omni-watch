@@ -1,0 +1,12 @@
+menu "Time Traveller"
+
+config DW_DOORS_MOCKUP
+    bool "Designer A's 2.3 s doors timeline (A/B)"
+    default n
+    help
+        The doors' timeline from Designer A's mockup (fade 0-180 ms, seam 110-300, the pop rising 250-320, the swing
+        from 380 for 780 ms, the end at 2.3 s) instead of the device default (the swing from 150 ms for 600 ms, the
+        end at 1.8 s; spec section 10, D13), for the owner's side-by-side. Sets DW_DOORS_MOCKUP=1 on dw_core
+        (dw/doors.h).
+
+endmenu

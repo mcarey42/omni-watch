@@ -1,0 +1,44 @@
+# The paths that never ship (public release Task 14): one git glob pathspec per line (`*` stays within a directory,
+# `**` crosses them); `#` starts a comment. tools/make_public.sh reads this file from the ref it exports, and
+# tools/release_check.py fails an exported tree holding any path that matches it.
+
+# Process records: specs, plans, reviews, acceptance logs and design notes
+docs/superpowers/**
+docs/*-acceptance.md
+research/**
+.superpowers/**
+design/BRIEF.md
+design/notes-*.md
+
+# The private term modules and the private research index (the public tree skips the scans that need them)
+tools/rd_terms.py
+tools/export/rd_terms.mjs
+tools/dw_terms.py
+tools/export/dw_terms.mjs
+tools/research_tracked.txt
+
+# Screenshots showing a personal network name (audit A22)
+design/shots/device-wifi-sheet.png  # a network name on the Wi-Fi sheet
+design/shots/device-wifi-forget-confirm.png  # a network name in the forget confirmation
+design/shots/device-err-no-ap.png  # a network name in the not-found error
+design/shots/device-err-password.png  # a network name in the wrong-password error
+design/shots/device-err-sync.png  # a network name in the sync error
+design/shots/device-quick.png  # a network name in quick settings
+design/shots/s2-device-quick.png  # a network name in quick settings
+design/shots/s3-device-quick.png  # a network name in quick settings
+
+# Device captures with a personal setting visible (Task 13; they cannot be regenerated from the mockup)
+design/shots/device-digital-awake.png  # a bench city under the digital time
+design/shots/device-digital-unset.png  # a bench city under the unset digital face
+design/shots/s2-device-digital-awake.png  # a bench city under the digital time
+design/shots/s2-device-globe-live.png  # a bench city on the live globe
+design/shots/s2-device-settings.png  # a bench city in settings
+design/shots/s3-device-digital-awake.png  # a bench city under the digital time
+design/shots/s3-device-globe-live.png  # a bench city on the live globe
+design/shots/s3-device-settings.png  # a bench city in settings
+
+# Mockup shots taken before the London default, with a personal setting visible (Task 13; a regenerated shot would
+# not match)
+design/shots/faces-digital.png  # a bench city under the digital time
+design/shots/faces-globe-live-dawn.png  # a bench city on the live globe
+design/shots/faces-world-tokyo.png  # a bench city's code on the world-time ring

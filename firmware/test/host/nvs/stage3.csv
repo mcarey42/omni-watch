@@ -1,0 +1,10 @@
+key,type,encoding,value
+omni,namespace,,
+settings,file,hex2bin,settings.hex
+clockcal,file,hex2bin,clockcal.hex
+batrec,file,hex2bin,batrec.hex
+nvs.net80211,namespace,,
+sta.ssid,data,hex2bin,666978747572652d73736964
+sta.pswd,data,hex2bin,46414b452d5345435245542d31323334
+sta.authmode,data,u8,3
+sta.lis_intval,data,u32,3

@@ -1,0 +1,21 @@
+menu "Omni Watch"
+
+config OMNI_DIAL_PERF_BOUNDS
+    bool "dial bench: the slow frame's cost broken down (measurement only)"
+    depends on OMNI_DEBUG_CONSOLE
+    default n
+    help
+        Adds to `dial bench` the slow ring turn's cost with one part of the render removed at a time (no ring kernel, no
+        static layers, no globe, no magnifier, no lenses, omni_base in PSRAM): the upper bounds Stage 3 Task 7's perf
+        rounds (R88, R91) measured. Off: the normal build has none of it. Nothing on the face's own render path depends
+        on it.
+
+config OMNI_FLIP_MOCKUP
+    bool "Omni lid: the mockup's 1.64 s flip timeline (owner A/B)"
+    default n
+    help
+        The lid's timeline from the mockup (pop 280-380 ms, settle to 540, swing 580-1640) instead of the device's
+        (latch 150 ms + 0.6 s swing, R72/C15, plan D3), for the owner's side-by-side comparison of the two in
+        Stage 3. Sets OMNI_FLIP_MOCKUP=1 on omni_core (lid.h); the spin-up follows it (OMNI_ENTRY_FLIP).
+
+endmenu

@@ -1,0 +1,5 @@
+menu "Mining Ship"
+
+comment "The Mining Ship theme has no options of its own yet (check_apps allows only symbols declared here)"
+
+endmenu

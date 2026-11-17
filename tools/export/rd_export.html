@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mining Ship layer export</title>
+<!-- Served on 127.0.0.1 by tools/rd_export.mjs. The theme's three families come from the OFL TTFs tools/fonts.sh fetches
+     (Saira Stencil One, VT323, Chakra Petch 600: the only weight the watch ships), and the shared digital face's (for
+     its thumbnail) from the same files as dw's export, so the export works offline; rd_export.mjs also blocks Google
+     Fonts. -->
+<style>
+@font-face { font-family: "Saira Stencil One"; font-weight: 400; src: url("/tools/fonts/SairaStencilOne-Regular.ttf"); }
+@font-face { font-family: "VT323"; font-weight: 400; src: url("/tools/fonts/VT323-Regular.ttf"); }
+@font-face { font-family: "Chakra Petch"; font-weight: 600; src: url("/tools/fonts/ChakraPetch-SemiBold.ttf"); }
+@font-face { font-family: "Cormorant SC"; font-weight: 500; src: url("/tools/fonts/CormorantSC-Medium.ttf"); }
+@font-face { font-family: "Cormorant SC"; font-weight: 700; src: url("/tools/fonts/CormorantSC-Bold.ttf"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; src: url("/tools/fonts/IBMPlexSans-Regular.ttf"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 500; src: url("/tools/fonts/IBMPlexSans-Medium.ttf"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; src: url("/tools/fonts/IBMPlexSans-SemiBold.ttf"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; src: url("/tools/fonts/IBMPlexMono-Regular.ttf"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; src: url("/tools/fonts/IBMPlexMono-Medium.ttf"); }
+body { background: #000; }
+</style>
+</head>
+<body>
+<script>window.OMNI_FACES = [];</script>
+<!-- rd_export.js first: it seeds Math.random, tags canvases and guards drawn text before any mockup code exists; it then
+     loads the mockups itself (read in place, each with its exposure shim) when tools/rd_export.mjs calls rdExport. -->
+<script src="/tools/export/rd_export.js"></script>
+</body>
+</html>

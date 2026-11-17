@@ -1,0 +1,36 @@
+menu "Watch UI"
+
+config OMNI_DEBUG_CONSOLE
+    bool "Development commands on the USB-serial console"
+    default y
+    help
+        The console's development commands, which change the watch's state, fake input or measure it: inject, trace,
+        settime, nvs (stats|migrate force), fps, refr, face, awake (hold|release), setting, sfx (play|stop|stat), disp,
+        theme, assets, pm (also with CONFIG_PM_PROFILING), usbsim, and net fake | forget | boot-unprov (and the QR
+        payload, with its PoP, in `net`), plus the theme's own (watch_theme_t.console; the Omni: globe, dial and ring selftest), whose bench and
+        selftest code is left out with them.
+        Off for a watch in daily use: the console then keeps state, batsession, clock, city, shot, reboot and
+        net (status, sync, prov). Default on: agents need the console during development.
+
+config OMNI_LVGL_CORE
+    int "Core the LVGL task is pinned to (-1: no affinity)"
+    range -1 1
+    default 0
+    help
+        The LVGL task's affinity (board.c wraps esp_lv_adapter_init). Core 0 (R108): the render workers (the Omni
+        dial's and the globe views') run on core 1, and LVGL there cost about 5 ms a full-screen refresh (disp bench
+        full 24.5 fps against 28.0-28.5 on core 0; measured in Stage 3: Omni rest 27.1-27.8 -> 30.2-31.0 fps). Core 0
+        is shared with the radios (Wi-Fi, BT, NimBLE, esp_timer) and the dial's render helper, which a busy core 0 only
+        withdraws from a frame. Core 1 was Stage 3 Task 7's choice (T2 m10).
+
+config OMNI_DISP_DIRECT
+    bool "Direct path: full-screen motion sent as internal-RAM bands straight to the panel (lever B)"
+    default y
+    help
+        Stage 4a lever B (watch_ui/disp_direct.c): while a view sends full-screen motion, a sender task draws its bands
+        from internal DMA RAM (the lent 14 912 B staging buffer plus 14 912 B allocated at the claim and freed at the
+        release, R118) straight to the CO5300 and LVGL's flushes are dropped. Never under provisioning, and only while
+        DISP_DIRECT_RESERVE bytes of internal RAM stay free. Off: every claim returns OMNI_DD_OFF and views keep the
+        IMAGE path.
+
+endmenu
